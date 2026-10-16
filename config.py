@@ -1,3 +1,4 @@
+
 """
 config.py — Application-wide configuration constants for AttendEase.
 
@@ -30,39 +31,40 @@ DATABASE_PATH = os.path.join(DATA_DIR, "attendease.db")
 # ---------------------------------------------------------------------------
 # Timezone
 # ---------------------------------------------------------------------------
-# The application stores all timestamps in UTC (ISO-8601 strings) and
-# displays them in the LOCAL_TIMEZONE when presenting to the user.
-# Change this value to match the server's location.
+# All timestamps are stored in UTC and displayed in the configured timezone.
 LOCAL_TIMEZONE = "Asia/Kolkata"  # IST — UTC+05:30
 
 # ---------------------------------------------------------------------------
 # Authentication
 # ---------------------------------------------------------------------------
-# Session state key used to store the logged-in admin's username.
 SESSION_KEY_USER = "authenticated_user"
-# Minimum password length enforced on the "change password" form.
 MIN_PASSWORD_LENGTH = 6
 
 # ---------------------------------------------------------------------------
 # Attendance rules
 # ---------------------------------------------------------------------------
-# Students with an attendance percentage below this threshold are flagged.
 LOW_ATTENDANCE_THRESHOLD = 75.0  # percent
 
 # ---------------------------------------------------------------------------
-# QR code settings
+# Application URL and QR code settings
 # ---------------------------------------------------------------------------
-# The host shown inside the generated QR code URL.
-# ‣ For local testing on the same machine, keep "localhost".
-# ‣ For cross-device testing (phone on the same Wi-Fi), replace with the
-#   host machine's LAN IP, e.g. "192.168.1.10".
-# ‣ The port must match the --server.port passed to `streamlit run`.
+# Set APP_BASE_URL in the environment to override this URL.
+# Production: https://attendease-123.streamlit.app
+# Local development: http://localhost:8501
+
+APP_BASE_URL = os.getenv(
+    "APP_BASE_URL",
+    "https://attendease-123.streamlit.app"
+).rstrip("/")
+
+# Retain these constants for any existing local-development code.
 QR_HOST = "localhost"
 QR_PORT = 8501
+
+# Use this base URL when generating attendance links and QR codes.
+QR_BASE_URL = APP_BASE_URL
 
 # ---------------------------------------------------------------------------
 # Sample-data guard
 # ---------------------------------------------------------------------------
-# The seeder (init_sample_data.py) writes this sentinel to the DB so it
-# never inserts duplicate demo records on a second run.
 SAMPLE_DATA_SENTINEL = "SAMPLE_DATA_LOADED_V1"
