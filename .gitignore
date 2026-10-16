@@ -1,0 +1,37 @@
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Database (do NOT commit live data)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Generated QR codes
+assets/qr_*.png
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+*.pytest_cache
+
+# Distribution
+dist/
+build/
+*.egg-info/

@@ -1,0 +1,7 @@
+qrcode
+Pillow
+streamlit>=1.32.0
+pandas
+plotly
+werkzeug
+pytest
